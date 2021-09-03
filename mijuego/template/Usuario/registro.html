@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<div class="card text-white bg-dark">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align: center;">Trivia de la Provincialización del Chaco</h4>
+        <H2 class="card-text" style="text-align: center;">REGISTRATE COMO JUGADOR</H2>
+    </div>
+</div>
+      <div class="container">
+        <div class="jumbotron my-4">
+            <p>
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+            <button type="submit" class="btn btn-success btn-block">
+                Enviar
+            </button>
+            </form>
+            </p>
+        </div>
+    </div>  
+
+
+{% endblock %}

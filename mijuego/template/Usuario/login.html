@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+<div class="container-fluid">
+	<div class="row justify-content-center" style="background-color: black; text-align: center;">
+		<div>
+			<img src="http://imgfz.com/i/5gymFGI.png" alt="">
+			<h3 style="color: rgb(250, 183, 0);">
+				Bienvenid@ a la
+			</h3>
+		<h3 style="color: rgb(250, 183, 0);">
+			Trivia de la Provincialización del Chaco
+		</h3>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row justify-content-center" style="background-color:black">
+		<div class="jumbotron my-4" style="text-align: center;">
+			<h3>
+				Ingresa al Juego
+			</h3>
+			<form method="POST">
+				{% csrf_token %}
+
+				{{form.as_p}}
+
+				<button type="submit" class="btn btn-primary btn-block">
+					Enviar
+				</button>
+
+				<a href="{% url 'registro' %}">
+					Quiero registrarme primero
+				</a>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

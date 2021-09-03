@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+{% if pregunta is None %}
+
+<div class="container" style="background-color: black;">
+		<div class="jumbotron my-4" class="row justify-content-center">
+			<h3>No hay mas preguntas!! ¿Querés ver el tablero de posiciones?</h3>
+			<a href="{% url 'tablero' %}">
+				<button class="btn-success btn-block">
+					Ver Aqui
+				</button>
+			</a>
+		</div>
+</div>
+
+{% else %}
+
+
+<div class="container">
+	<div class="card text-white" style="background-color: black;">
+		<div>
+		<h2 style="text-align: center; color: rgb(4, 153, 253);">
+			A jugar!
+		</h2>
+		</div>
+		
+	<div class="row justify-content-center" >
+	<div class="jumbotron my-4" style="background-color:rgb(250, 183, 0)">
+		<img src="http://imgfz.com/i/5gymFGI.png" alt="" width="247" height="130" >
+		<h3 style="color: black;">
+			{{pregunta.texto}}
+		</h3>
+
+		<form method="POST" class="form">
+			{% csrf_token %}
+			<input type="hidden" name="pregunta_pk" value="{{pregunta.pk}}">
+
+			{% for opciones in pregunta.opciones.all %}
+				<div style="color: black;" class="form-check mx-4">
+				<input class="form-check-input" type="radio" name="respuesta_pk" value="{{opciones.pk}}" id="choice-{{forloop.counter}}">
+				<label class="form-check-label" for="choice-{{forloop.counter}}">
+					{{opciones.texto}}
+				</label>
+				</div>
+			{% endfor %}
+
+			<button type="submit" class="btn btn-primary btn-block">
+				Enviar
+			</button>
+
+		</form>
+
+	</div>
+</div>
+</div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}
+
